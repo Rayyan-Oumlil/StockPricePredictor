@@ -6,4 +6,3 @@ yfinance
 plotly
 scikit-learn
 xlsxwriter
-kaleido
