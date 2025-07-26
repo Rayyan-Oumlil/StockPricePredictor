@@ -6,8 +6,6 @@ developers, data‑scientists and hobbyists a starting point for
 experimenting with different machine‑learning and deep‑learning
 approaches to time series forecasting.
 
-## 🚀 **New Features (2024)**
-
 ### 📊 **Web Interface with Streamlit**
 - **Modern UI** : Beautiful, responsive web interface
 - **Interactive Charts** : Zoom, hover, and pan capabilities
