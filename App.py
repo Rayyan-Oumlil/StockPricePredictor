@@ -572,16 +572,7 @@ def main():
                     b64 = base64.b64encode(detailed_excel_bytes).decode()
                     href = f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64}" download="predictions.xlsx" style="display:inline-block;padding:0.5em 1.2em;font-size:1.1rem;font-weight:600;color:#fff;background:#1f77b4;border-radius:0.4em;text-decoration:none;margin:0.5em 0;">⬇️ Download Predictions as Excel</a>'
                     st.markdown(href, unsafe_allow_html=True)
-                # Download main chart as PNG (no reload, no session_state)
-                try:
-                    png_bytes = comparison_chart.to_image(format="png")
-                    import base64
-                    b64_png = base64.b64encode(png_bytes).decode()
-                    href_png = f'<a href="data:image/png;base64,{b64_png}" download="comparison_chart.png" style="display:inline-block;padding:0.5em 1.2em;font-size:1.1rem;font-weight:600;color:#fff;background:#ff7f0e;border-radius:0.4em;text-decoration:none;margin:0.5em 0;">⬇️ Download Chart as PNG</a>'
-                    st.markdown(href_png, unsafe_allow_html=True)
-                except Exception as e:
-                    st.warning("⚠️ Chart download not available. Install kaleido: pip install kaleido")
-                    st.info("💡 You can still download the Excel data and take screenshots of the charts.")
+
                 # Individual stock details
                 st.subheader("🎯 Detailed Predictions")
                 for ticker in all_data.keys():
