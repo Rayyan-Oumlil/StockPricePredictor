@@ -6,6 +6,8 @@ developers, data‑scientists and hobbyists a starting point for
 experimenting with different machine‑learning and deep‑learning
 approaches to time series forecasting.
 
+## 🚀 **New Features (2024)**
+
 ### 📊 **Web Interface with Streamlit**
 - **Modern UI** : Beautiful, responsive web interface
 - **Interactive Charts** : Zoom, hover, and pan capabilities
@@ -25,16 +27,33 @@ approaches to time series forecasting.
 - **Feature Importance** : Understand what drives predictions
 - **Forecast Visualization** : See predictions on interactive charts
 
+### 🔔 **Alerts System**
+- **Price Threshold Alerts** : Set notifications for specific price levels
+- **Real-time Monitoring** : Alerts trigger during stock analysis
+- **Easy Management** : Add, edit, and delete alerts with simple interface
+
+### 📊 **Multi-Page Interface**
+- **Main Analysis** : Multi-stock prediction and comparison
+- **Comparison Tool** : Side-by-side stock analysis
+- **Market Overview** : Real-time market data and indices
+- **Alerts Management** : Configure price notifications
+- **Documentation** : Complete user guide and help
+
 
 
 ## 📁 **Project Structure**
 
 ```
 StockPricePredictor/
+├── App.py               # Main Streamlit application
 ├── main.py              # Original CLI version
-├── app.py               # Full-featured Streamlit app
-├── app_simple.py        # Simplified Streamlit app (recommended)
+├── pages/               # Streamlit multipage app
+│   ├── 2_Comparison_Tool.py
+│   ├── 3_Market_Overview.py
+│   ├── 4_Alertes.py
+│   └── 5_Documentation.py
 ├── requirements.txt     # Dependencies
+├── alerts_config.json   # Alerts configuration
 └── README.md           # This file
 ```
 
@@ -42,14 +61,9 @@ StockPricePredictor/
 
 ### Option 1: Web Interface (Recommended) 🌐
 
-**Launch the simplified version:**
+**Launch the main application:**
 ```bash
-streamlit run app_simple.py
-```
-
-**Launch the full-featured version:**
-```bash
-streamlit run app.py
+streamlit run App.py
 ```
 
 **Then open your browser to:** `http://localhost:8501`
@@ -82,11 +96,18 @@ pip install -r requirements.txt
 ## 📊 **Usage Examples**
 
 ### Web Interface
-1. **Select Stock** : Choose any ticker (AAPL, MSFT, TSLA, etc.)
+**Main App:**
+1. **Select Stocks** : Choose multiple tickers (AAPL, MSFT, TSLA, etc.)
 2. **Set Date Range** : Pick start and end dates
 3. **Choose Model** : Linear Regression or Random Forest
 4. **Set Forecast Days** : 1-30 days into the future
-5. **Click "Analyze Stock"** : Get instant results!
+5. **Click "Analyze Stocks"** : Get instant results!
+
+**Additional Pages:**
+- **📊 Comparison Tool** : Compare multiple stocks side-by-side
+- **📈 Market Overview** : Real-time market data and indices
+- **🔔 Alerts** : Set price threshold notifications
+- **📖 Documentation** : Complete guide and help
 
 ### Command Line
 ```bash
