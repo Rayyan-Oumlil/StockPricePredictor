@@ -1,0 +1,8 @@
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+yfinance
+# Optional: uncomment the line below to enable LSTM support
+# tensorflow
