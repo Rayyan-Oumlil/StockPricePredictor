@@ -109,12 +109,17 @@ def forecast(model, df: pd.DataFrame, feature_cols, horizon: int) -> pd.DataFram
     last_row = df.iloc[-1].copy()
     predictions = []
     current_date = df.index[-1]
+    
+    # Get the last few closing prices for moving average calculations
+    last_closes = df["Close"].iloc[-20:].values  # Get last 20 values
+    
     for i in range(horizon):
         # Prepare input for prediction
         X_last = last_row[feature_cols].values.reshape(1, -1)
         next_close = model.predict(X_last)[0]
         next_date = current_date + timedelta(days=1)
         predictions.append((next_date, next_close))
+        
         # Update last_row for next iteration: shift features
         # For simplicity we set open/high/low/close equal to the predicted close
         last_row["Open"] = next_close
@@ -122,13 +127,19 @@ def forecast(model, df: pd.DataFrame, feature_cols, horizon: int) -> pd.DataFram
         last_row["Low"] = next_close
         last_row["Close"] = next_close
         last_row["Volume"] = last_row["Volume"]  # volume unchanged
-        # Recompute moving averages; shift previous values
+        
+        # Update the last_closes array for moving average calculations
+        last_closes = np.append(last_closes[1:], next_close)
+        
+        # Recompute moving averages
         for window, col in [(5, "SMA_5"), (10, "SMA_10"), (20, "SMA_20")]:
-            # Simple moving average: average of last (window-1) actual values plus predicted value
-            prev_series = df["Close"].iloc[-(window-1):].tolist()
-            prev_series.append(next_close)
-            last_row[col] = np.mean(prev_series)
+            if len(last_closes) >= window:
+                last_row[col] = np.mean(last_closes[-window:])
+            else:
+                last_row[col] = np.mean(last_closes)
+        
         current_date = next_date
+    
     forecast_df = pd.DataFrame(predictions, columns=["Date", "Predicted_Close"])
     return forecast_df
 

@@ -1,8 +1,9 @@
+# Requirements for Stock Price Predictor (Streamlit multipage app)
+streamlit>=1.22
 pandas
 numpy
-matplotlib
-seaborn
-scikit-learn
 yfinance
-# Optional: uncomment the line below to enable LSTM support
-# tensorflow
+plotly
+scikit-learn
+xlsxwriter
+kaleido
